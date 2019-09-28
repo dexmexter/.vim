@@ -2,6 +2,9 @@
 # ~/.bashrc
 #
 
+# activate vi mode with <Escape>
+set -o vi
+
 [[ $- != *i* ]] && return
 
 colors() {
