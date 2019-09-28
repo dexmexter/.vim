@@ -1,16 +1,18 @@
 filetype on
 syntax on " syntax highlighting
-colorscheme slate 
-
-set colorcolumn=80 " show ruler at column 80
+colorscheme slate
+set encoding=utf-8
+set splitbelow " horizontal split appears below
+set splitright " vertical split appears right
 set number " line numbers
+set relativenumber " shows line numbers relative to current line
 set showcmd " show command in bottom bar
 set cursorline " highlight current line
 
 filetype indent on " load filetype-specific indent files
 set wildmenu " visual autocomplete for command menu
 set lazyredraw " redraw only when needed
-set textwidth=120 
+set textwidth=80
 set tabstop=4 " number of visual spaces per TAB
 set shiftwidth=4 " number of spaces in tab when editing
 set expandtab " tabs are spaces
@@ -30,3 +32,5 @@ set foldlevelstart=10 " open most folds by default
 set foldnestmax=10 " 10 nested fold max
 set foldmethod=indent "fold based on indent level
 
+" Below is from https://sanctum.geek.nz/arabesque/vim-misconceptions/
+" setlocal spell spelllang=en_ca " spellchecking
