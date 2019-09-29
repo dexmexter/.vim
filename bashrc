@@ -5,6 +5,9 @@
 # activate vi mode with <Escape>
 set -o vi
 
+# set vim as default editor
+export EDITOR=/usr/bin/vim
+
 [[ $- != *i* ]] && return
 
 colors() {
