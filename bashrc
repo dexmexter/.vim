@@ -152,7 +152,3 @@ export YAOURT_COLORS="nb=1:pkg=1:ver=1;32:lver=1;45:installed=1;42:grp=1;34:od=1
 
 # Add adb tool to the PATH in order for scrpcy to work properly
 export PATH=$PATH:/opt/android-sdk/platform-tools/
-
-# getting virtualenvwrapper to work
-source /usr/bin/virtualenvwrapper.sh
-export WORKON_HOME=$HOME/Envs
