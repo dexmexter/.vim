@@ -7,7 +7,7 @@ dir="${HOME}/Documents/github/dotfiles"
 
 # Create soft link in Home for each file
 for dotfile in "${dotfiles[@]}";do
-    ln -sf "${HOME}/.${dotfile}" "${dir}"
+    ln -sf "${dir}" "${HOME}/.${dotfile}"
 done
 
 
