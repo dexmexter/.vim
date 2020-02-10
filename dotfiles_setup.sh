@@ -1,13 +1,6 @@
 #!/bin/bash
 
-# List of dotfiles to be recreated
-dotfiles=("vimrc" "bashrc" "tmux.conf")
-# Location of dotfiles folder
-dir="${HOME}/Documents/github/dotfiles"
-
-# Create soft link in Home for each file
-for dotfile in "${dotfiles[@]}";do
-    ln -sf "${dir}" "${HOME}/.${dotfile}"
-done
-
-
+ln -sf ~/.dotfiles/vimrc ~/.vimrc
+ln -sf ~/.dotfiles/bashrc ~/.bashrc
+ln -sf ~/.dotfiles/tmux.conf ~/.tmux.conf
+ln -sf ~/.dotfiles/gitconfig ~/.gitconfig

@@ -105,6 +105,7 @@ alias more=less
 # Piping access to the clipboard (requires xclip)
 alias setclip="xclip -selection c"
 alias getclip='xclip -selection c -o'
+alias ranger='ranger --choosedir=$HOME/rangerdir; LASTDIR=`cat $HOME/rangerdir`; cd "$LASTDIR"'
 
 xhost +local:root > /dev/null 2>&1
 
