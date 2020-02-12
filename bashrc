@@ -10,6 +10,22 @@ export EDITOR=/usr/bin/vim
 
 [[ $- != *i* ]] && return
 
+## Less/Man colors ##
+# Start bold
+export LESS_TERMCAP_md=$(tput bold; tput setaf 2) # cyan
+# End bold, blinking
+export LESS_TERMCAP_me=$(tput sgr0)
+# Start stand out
+export LESS_TERMCAP_so=$(tput bold; tput rev; tput setaf 3) # yellow
+# End stand out
+export LESS_TERMCAP_se=$(tput rmso; tput sgr0)
+# Start underline
+export LESS_TERMCAP_us=$(tput smul; tput bold; tput setaf 4) # blue
+# End underline
+export LESS_TERMCAP_ue=$(tput rmul; tput sgr0)
+
+# Not sure what these are, I think they came from Manjaro. Should try removing
+# at some point.
 colors() {
 	local fgc bgc vals seq0
 
@@ -99,13 +115,12 @@ unset use_color safe_term match_lhs sh
 alias cp="cp -i"                          # confirm before overwriting something
 alias df='df -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
-alias np='nano -w PKGBUILD'
 alias more=less
+alias ranger='ranger --choosedir=$HOME/rangerdir; LASTDIR=`cat $HOME/rangerdir`; cd "$LASTDIR"'
 
 # Piping access to the clipboard (requires xclip)
 alias setclip="xclip -selection c"
 alias getclip='xclip -selection c -o'
-alias ranger='ranger --choosedir=$HOME/rangerdir; LASTDIR=`cat $HOME/rangerdir`; cd "$LASTDIR"'
 
 xhost +local:root > /dev/null 2>&1
 
