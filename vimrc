@@ -12,7 +12,6 @@ set cursorline " highlight current line
 filetype indent on " load file type-specific indent files
 set wildmenu " visual autocomplete for command menu
 set lazyredraw " redraw only when needed
-set textwidth=80
 set tabstop=4 " number of visual spaces per TAB
 set softtabstop=4 " number of spaces in tab when editing
 set shiftwidth=4 " number of spaces in tab when editing

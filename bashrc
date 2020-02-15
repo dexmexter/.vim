@@ -5,8 +5,19 @@
 # activate vi mode with <Escape>
 set -o vi
 
+# Open terminal with tmux started
+if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+  exec tmux
+fi
+
+# Run neofetch if it exists
+if command -v neofetch &> /dev/null; then
+    neofetch
+fi
+
 # set vim as default editor
 export EDITOR=/usr/bin/vim
+export BROWSER=/usr/bin/firefox
 
 [[ $- != *i* ]] && return
 
@@ -116,7 +127,7 @@ alias cp="cp -i"                          # confirm before overwriting something
 alias df='df -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
 alias more=less
-alias ranger='ranger --choosedir=$HOME/rangerdir; LASTDIR=`cat $HOME/rangerdir`; cd "$LASTDIR"'
+alias ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
 
 # Piping access to the clipboard (requires xclip)
 alias setclip="xclip -selection c"
