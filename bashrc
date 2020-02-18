@@ -123,14 +123,19 @@ fi
 
 unset use_color safe_term match_lhs sh
 
+# General Alias list
 alias cp="cp -i"                          # confirm before overwriting something
 alias df='df -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
 alias more=less
 alias ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
 
+if command -v nvim &> /dev/null; then
+    alias vim='nvim'
+fi
+
 # Piping access to the clipboard (requires xclip)
-alias setclip="xclip -selection c"
+alias setclip='xclip -selection c'
 alias getclip='xclip -selection c -o'
 
 xhost +local:root > /dev/null 2>&1
