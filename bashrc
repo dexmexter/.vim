@@ -5,11 +5,6 @@
 # activate vi mode with <Escape>
 set -o vi
 
-# Open terminal with tmux started
-if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-  exec tmux
-fi
-
 # Run neofetch if it exists
 if command -v neofetch &> /dev/null; then
     neofetch
