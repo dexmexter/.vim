@@ -43,13 +43,6 @@ augroup Vimrc
     autocmd! bufwritepost .vimrc source %
 augroup END
 
-" Cursorline on active windows only
-augroup cline
-    au!
-    au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-    au WinLeave * setlocal nocursorline
-augroup END
-
 command! MakeTags !ctags -R .
 "}}}
 
