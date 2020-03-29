@@ -10,28 +10,29 @@ if command -v neofetch &> /dev/null; then
     neofetch
 fi
 
-# set vim as default editor
-export EDITOR=/usr/bin/vim
-export BROWSER=/usr/bin/firefox
+# Default programs
+export EDITOR="vim"
+export TERMINAL="st"
+export BROWSER="firefox"
+export READER="zathura"
+
+# ~/ Clean-up:
+export LESSHISTFILE="-"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME=".local/share"
 
 [[ $- != *i* ]] && return
 
 ## Less/Man colors ##
-# Start bold
-export LESS_TERMCAP_md=$(tput bold; tput setaf 2) # cyan
-# End bold, blinking
-export LESS_TERMCAP_me=$(tput sgr0)
-# Start stand out
-export LESS_TERMCAP_so=$(tput bold; tput rev; tput setaf 3) # yellow
-# End stand out
-export LESS_TERMCAP_se=$(tput rmso; tput sgr0)
-# Start underline
-export LESS_TERMCAP_us=$(tput smul; tput bold; tput setaf 4) # blue
-# End underline
-export LESS_TERMCAP_ue=$(tput rmul; tput sgr0)
+export LESS_TERMCAP_md=$(tput bold; tput setaf 2) # Bold (cyan)
+export LESS_TERMCAP_me=$(tput sgr0) # End bold, blinking
+export LESS_TERMCAP_so=$(tput bold; tput rev; tput setaf 3) # Stand out (yellow)
+export LESS_TERMCAP_se=$(tput rmso; tput sgr0) # End stand out
+export LESS_TERMCAP_us=$(tput smul; tput bold; tput setaf 4) # Underline (blue)
+export LESS_TERMCAP_ue=$(tput rmul; tput sgr0) # End underline
 
 # Not sure what these are, I think they came from Manjaro. Should try removing
-# at some point.
+#{{{
 colors() {
 	local fgc bgc vals seq0
 
@@ -60,6 +61,7 @@ colors() {
 }
 
 [ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
+#}}}
 
 # Change the window title of X terminals
 case ${TERM} in
@@ -123,11 +125,9 @@ alias cp="cp -i"                          # confirm before overwriting something
 alias df='df -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
 alias more=less
-alias ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
+alias ranger='ranger --choosedir=$HOME/.config/ranger/rangerdir; LASTDIR=`cat $HOME/.config/ranger/rangerdir`; cd "$LASTDIR"'
 
-if command -v nvim &> /dev/null; then
-    alias vim='nvim'
-fi
+alias calcurse='calcurse -D "$XDG_CONFIG_HOME"/calcurse'
 
 # Piping access to the clipboard (requires xclip)
 alias setclip='xclip -selection c'
@@ -144,8 +144,6 @@ complete -cf sudo
 shopt -s checkwinsize
 
 shopt -s expand_aliases
-
-# export QT_SELECT=4
 
 # Enable history appending instead of overwriting.  #139609
 shopt -s histappend
