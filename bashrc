@@ -20,6 +20,10 @@ export READER="zathura"
 export LESSHISTFILE="-"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME=".local/share"
+export HISTFILE="$XDG_DATA_HOME/bash/history"
+
+alias calcurse='calcurse -D "$XDG_CONFIG_HOME"/calcurse'
+alias tmux='tmux -f "$XDG_CONFIG_HOME"/tmux/tmux.conf'
 
 [[ $- != *i* ]] && return
 
@@ -127,7 +131,6 @@ alias free='free -m'                      # show sizes in MB
 alias more=less
 alias ranger='ranger --choosedir=$HOME/.config/ranger/rangerdir; LASTDIR=`cat $HOME/.config/ranger/rangerdir`; cd "$LASTDIR"'
 
-alias calcurse='calcurse -D "$XDG_CONFIG_HOME"/calcurse'
 
 # Piping access to the clipboard (requires xclip)
 alias setclip='xclip -selection c'
