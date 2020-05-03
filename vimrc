@@ -56,9 +56,9 @@ map <Leader>tk <C-w>t<C-w>K
 autocmd BufWritePre * :%s/\s\+$//e  " eliminate trailing spaces
 
 " Automatically source .vimrc on save
-"augroup Vimrc
-"    autocmd! bufwritepost .vimrc source %
-"augroup END
+augroup Vimrc
+    autocmd! bufwritepost .vimrc source %
+augroup END
 
 " Automatically source init.vim on save
 augroup InitVim
