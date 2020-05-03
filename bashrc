@@ -9,17 +9,19 @@ set -o vi
 set completion-ignore-case on
 set show-all-if-ambiguous on
 
-# no duplicates in history
+# no duplicates in history and append, don't overwrite
 export HISTCONTROL=ingnoreboth:erasedups
+shopt -s histappend
 
 # Run neofetch if exists
 command -v neofetch &> /dev/null && neofetch
 
 # Add ~/.local/bin to PATH
+mkdir -p $HOME/.local/bin/
 export PATH="$PATH:$(du "$HOME/.local/bin/" | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
 
 # Default programs
-export EDITOR="vim"
+export EDITOR="nvim"
 export TERMINAL="st"
 export BROWSER="firefox"
 export READER="zathura"
@@ -55,7 +57,9 @@ alias cp="cp -i"                          # confirm before overwriting something
 alias df='df -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
 alias more='less'
-alias cdranger='ranger --choosedir=$HOME/.config/ranger/rangerdir; LASTDIR=`cat $HOME/.config/ranger/rangerdir`; cd "$LASTDIR"'
+
+# move to a new directory using ranger
+alias cdr='ranger --choosedir=$HOME/.config/ranger/rangerdir; LASTDIR=`cat $HOME/.config/ranger/rangerdir`; cd "$LASTDIR"'
 
 # Piping access to the clipboard (requires xclip)
 alias setclip='xclip -selection c'
@@ -70,9 +74,6 @@ complete -cf sudo
 shopt -s checkwinsize
 
 shopt -s expand_aliases
-
-# Enable history appending instead of overwriting
-shopt -s histappend
 
 # Luke Smith colors
 export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 3)\]\u\[$(tput setaf 2)\]@\[$(tput setaf 4)\]\h \[$(tput setaf 5)\]\W\[$(tput setaf 1)\]]\[$(tput setaf 7)\]\\$ \[$(tput sgr0)\]"
