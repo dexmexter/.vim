@@ -1,13 +1,23 @@
 #!/bin/bash
 
 # symlink for neovim config if neovim installed, else create vimrc symlink
-command -v nvim >/dev/null && ln -sf ~/.dotfiles/vimrc ~/.config/nvim/init.vim ; echo "vimrc installed at ~/.config/nvim/init.vim" || ln -sf ~/.dotfiles/vimrc ~/.vim/vimrc ; echo "vimrc installed at ~/.vim/vimrc"
+if command -v nvim >/dev/null 2>&1; then
+    mkdir -p ~/.config/nvim/
+    ln -si ~/.dotfiles/vimrc ~/.config/nvim/init.vim &&
+    echo "vimrc installed at ~/.config/nvim/init.vim"
+else
+    mkdir -p ~/.vim/
+    ln -si ~/.dotfiles/vimrc ~/.vim/vimrc &&
+    echo "vimrc installed at ~/.vim/vimrc"
+fi
 
-ln -sf ~/.dotfiles/bashrc ~/.bashrc
+ln -si ~/.dotfiles/bashrc ~/.bashrc &&
 echo "bashrc installed at ~/.bashrc"
 
-ln -sf ~/.dotfiles/tmux.conf ~/.config/tmux/tmux.conf
+mkdir -p ~/.config/tmux/
+ln -si ~/.dotfiles/tmux.conf ~/.config/tmux/tmux.conf &&
 echo "tmux.conf installed at ~/.config/tmux/tmux.conf"
 
-ln -sf ~/.dotfiles/gitconfig ~/.config/git/config
+mkdir -p ~/.config/git/
+ln -si ~/.dotfiles/gitconfig ~/.config/git/config &&
 echo "gitconfig installed at ~/.config/git/config"
