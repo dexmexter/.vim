@@ -3,13 +3,14 @@
 """ Settings
 let mapleader = ","
 set nocompatible
+set encoding=utf-8
 filetype indent on                  " Load file type-specific indent files
-set wildmenu                        " Visual autocomplete for command menu
 set lazyredraw                      " Redraw only when needed
 set hidden                          " Prefer hiding over unloading buffers
 set path+=**                        " Find files in subfolders
 let g:netrw_banner=0                " disable annoying netrw banner
 set mouse=a                         " enable mouse
+set autoread                        " autoload file changes
 set textwidth=79
 "set formatoptions=jcroql           " automatic text wrapping
 
@@ -17,15 +18,16 @@ set textwidth=79
 filetype on
 syntax on                           " Syntax highlighting
 colorscheme slate
-set encoding=utf-8
 set splitbelow splitright
+set wildmenu                        " Visual autocomplete for command menu
 set number                          " Line numbers
 set relativenumber                  " Line numbers relative to current line
 set showcmd                         " Show command in bottom bar
-set hlsearch                        " highlight search term
 set incsearch                       " search as characters are entered
 set showmatch                       " show matching bracket
 set fillchars+=vert:\               " remove pipes as split seperators
+set scrolloff=1                     " always show at least one line above/below cursor
+set sidescrolloff=5                 " for horizontal
 
 """ Indenting
 set tabstop=4                       " Number of visual spaces per TAB
