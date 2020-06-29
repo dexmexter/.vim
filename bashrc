@@ -9,9 +9,16 @@ set -o vi
 set completion-ignore-case on
 set show-all-if-ambiguous on
 
-# no duplicates in history and append, don't overwrite
-export HISTCONTROL=ingnoreboth:erasedups
+# history settings
+# ideas from https://sanctum.geek.nz/arabesque/better-bash-history/
 shopt -s histappend
+export HISTFILE="$XDG_DATA_HOME/bash/history"
+export HISTSIZE=2000
+export HISTCONTROL=ingnoreboth:erasedups
+export HISTIGNORE='ls:bg:fg:history'
+export HISTTIMEFORMAT='%F %T '
+shopt -s cmdhist
+export PROMPT_COMMAND='history -a'
 
 # Run neofetch if exists
 command -v neofetch &> /dev/null && neofetch
@@ -29,8 +36,7 @@ export READER="zathura"
 # ~/ Clean-up:
 export LESSHISTFILE="-"
 export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_DATA_HOME=".local/share"
-export HISTFILE="$XDG_DATA_HOME/bash/history"
+export XDG_DATA_HOME="$HOME/.local/share"
 
 alias calcurse='calcurse -D "$XDG_CONFIG_HOME"/calcurse'
 alias tmux='tmux -f "$XDG_CONFIG_HOME"/tmux/tmux.conf'
@@ -52,14 +58,16 @@ alias ls='ls -h --color=auto'
 alias grep='grep --colour=auto'
 alias egrep='egrep --colour=auto'
 alias fgrep='fgrep --colour=auto'
+alias ip='ip --color=auto'
 
 alias cp="cp -i"                          # confirm before overwriting something
 alias df='df -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
 alias more='less'
-
 # move to a new directory using ranger
 alias cdr='ranger --choosedir=$HOME/.config/ranger/rangerdir; LASTDIR=`cat $HOME/.config/ranger/rangerdir`; cd "$LASTDIR"'
+alias yt='youtube-dl --add-metadata -i'
+alias yta='yt -x -f bestaudio/best'
 
 # Piping access to the clipboard (requires xclip)
 alias setclip='xclip -selection c'
