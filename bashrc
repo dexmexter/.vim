@@ -9,17 +9,6 @@ set -o vi
 set completion-ignore-case on
 set show-all-if-ambiguous on
 
-# history settings
-# ideas from https://sanctum.geek.nz/arabesque/better-bash-history/
-shopt -s histappend
-export HISTFILE="$XDG_DATA_HOME/bash/history"
-export HISTSIZE=2000
-export HISTCONTROL=ingnoreboth:erasedups
-export HISTIGNORE='ls:bg:fg:history'
-export HISTTIMEFORMAT='%F %T '
-shopt -s cmdhist
-export PROMPT_COMMAND='history -a'
-
 # Run neofetch if exists
 command -v neofetch &> /dev/null && neofetch
 
@@ -42,6 +31,17 @@ alias calcurse='calcurse -D "$XDG_CONFIG_HOME"/calcurse'
 alias tmux='tmux -f "$XDG_CONFIG_HOME"/tmux/tmux.conf'
 
 [[ $- != *i* ]] && return
+
+# history settings
+# ideas from https://sanctum.geek.nz/arabesque/better-bash-history/
+shopt -s histappend
+export HISTFILE="$XDG_DATA_HOME/bash/history"
+export HISTSIZE=2000
+export HISTCONTROL=ingnoreboth:erasedups
+export HISTIGNORE='ls:bg:fg:history'
+export HISTTIMEFORMAT='%F %T '
+shopt -s cmdhist
+export PROMPT_COMMAND='history -a'
 
 ## Less/Man colors ##
 export LESS_TERMCAP_md=$(tput bold; tput setaf 2) # Bold (cyan)
