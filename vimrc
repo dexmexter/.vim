@@ -12,7 +12,7 @@ let g:netrw_banner=0                " disable annoying netrw banner
 set mouse=a                         " enable mouse
 set autoread                        " autoload file changes
 set textwidth=79
-"set formatoptions=jcroql           " automatic text wrapping
+set formatoptions=tcq           " automatic text wrapping
 
 """ Appearance
 filetype on

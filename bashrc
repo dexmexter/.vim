@@ -43,7 +43,10 @@ export HISTTIMEFORMAT='%F %T '
 shopt -s cmdhist
 export PROMPT_COMMAND='history -a'
 
-## Less/Man colors ##
+### Colors ###
+export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 3)\]\u\[$(tput setaf 2)\]@\[$(tput setaf 4)\]\h \[$(tput setaf 5)\]\W\[$(tput setaf 1)\]]\[$(tput setaf 7)\]\\$ \[$(tput sgr0)\]"
+
+# Less/Man colors
 export LESS_TERMCAP_md=$(tput bold; tput setaf 2) # Bold (cyan)
 export LESS_TERMCAP_me=$(tput sgr0) # End bold, blinking
 export LESS_TERMCAP_so=$(tput bold; tput rev; tput setaf 3) # Stand out (yellow)
@@ -64,8 +67,11 @@ alias cp="cp -i"                          # confirm before overwriting something
 alias df='df -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
 alias more='less'
+
 # move to a new directory using ranger
 alias cdr='ranger --choosedir=$HOME/.config/ranger/rangerdir; LASTDIR=`cat $HOME/.config/ranger/rangerdir`; cd "$LASTDIR"'
+
+# Youtube downloading
 alias yt='youtube-dl --add-metadata -i'
 alias yta='yt -x -f bestaudio/best'
 
@@ -80,8 +86,27 @@ complete -cf sudo
 # it regains control.  #65623
 # http://cnswww.cns.cwru.edu/~chet/bash/FAQ (E11)
 shopt -s checkwinsize
-
 shopt -s expand_aliases
 
-# Luke Smith colors
-export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 3)\]\u\[$(tput setaf 2)\]@\[$(tput setaf 4)\]\h \[$(tput setaf 5)\]\W\[$(tput setaf 1)\]]\[$(tput setaf 7)\]\\$ \[$(tput sgr0)\]"
+## Starting ssh-agent automatically
+SSH_ENV="$HOME/.ssh/agent-environment"
+
+function start_agent {
+    echo "Initialising new SSH agent..."
+    /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
+    echo succeeded
+    chmod 600 "${SSH_ENV}"
+    . "${SSH_ENV}" > /dev/null
+    /usr/bin/ssh-add;
+}
+
+# Source SSH settings, if applicable
+
+if [ -f "${SSH_ENV}" ]; then
+    . "${SSH_ENV}" > /dev/null
+    ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+        start_agent;
+    }
+else
+    start_agent;
+fi
