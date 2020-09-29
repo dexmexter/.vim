@@ -37,6 +37,13 @@ set expandtab                       " Tabs are spaces
 set smartindent
 set autoindent
 
+""" Custom Mappings
+" Turn off search highlight
+nnoremap <silent> <Leader><space> :nohlsearch<CR>
+
+" Edit Vim configs
+nnoremap <silent> <Leader>v :edit $MYVIMRC<CR>
+
 """ Remap splits
 " navigation
 nnoremap <C-h> <C-w>h
@@ -54,17 +61,21 @@ noremap <silent> <C-Down> :resize -3<CR>
 map <Leader>th <C-w>t<C-w>H
 map <Leader>tk <C-w>t<C-w>K
 
+" Toggle indenting when pasting
+set pastetoggle=<F2>
+
+" Toggle spell checking
+noremap <F4> :setlocal spell! spelllang=en_us<CR>
+
+" Write file with sudo, when forgot to open with sudo.
+cmap w!! w !sudo tee % >/dev/null
+
 """ Autocommands
 autocmd BufWritePre * :%s/\s\+$//e  " eliminate trailing spaces
 
 " Automatically source .vimrc on save
 augroup Vimrc
     autocmd! bufwritepost .vimrc source %
-augroup END
-
-" Automatically source init.vim on save
-augroup InitVim
-    autocmd! bufwritepost init.vim source %
 augroup END
 
 command! MakeTags !ctags -R .

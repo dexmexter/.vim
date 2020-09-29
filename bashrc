@@ -17,7 +17,7 @@ mkdir -p $HOME/.local/bin/
 export PATH="$PATH:$(du "$HOME/.local/bin/" | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
 
 # Default programs
-export EDITOR="vim"
+export EDITOR="nvim"
 export TERMINAL="st"
 export BROWSER="firefox"
 export READER="zathura"
@@ -101,7 +101,6 @@ function start_agent {
 }
 
 # Source SSH settings, if applicable
-
 if [ -f "${SSH_ENV}" ]; then
     . "${SSH_ENV}" > /dev/null
     ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
