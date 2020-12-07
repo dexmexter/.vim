@@ -19,3 +19,6 @@ ln -vsi ~/.config/dotfiles/tmux.conf ~/.config/tmux/tmux.conf
 
 mkdir -vp ~/.config/git/
 ln -vsi ~/.config/dotfiles/gitconfig ~/.config/git/config
+
+# Check if zsh is installed
+# Install oh-my-zsh if it is not installed
